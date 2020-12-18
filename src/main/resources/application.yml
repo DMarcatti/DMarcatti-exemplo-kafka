@@ -1,0 +1,29 @@
+# Spring properties
+server:
+  port: 8080
+  servlet:
+    context-path : /kafka
+
+logging:
+  level:
+    br: DEBUG #TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
+    #com.zaxxer: DEBUG
+    #$org.hibernate: DEBUG
+    #o.hibernate: DEBUG
+
+spring:
+  application:
+    name: exemplo-kafka-producer
+  profiles:
+    active: local
+  kafka:   #Referencia https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
